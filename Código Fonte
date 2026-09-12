@@ -4,7 +4,7 @@ setwd("/Users/isadoracarneiro/Documents/Paulo Roberto/HOMEWORK")
 # Encontra o arquivo original enviado pela professora no computador.
 
 arquivo_original <- read.csv("HW1_bike_sharing.csv")
-# Carrega o arquivo original nO objeto arquivo_original.
+# Carrega o arquivo original no objeto arquivo_original.
 
 M <- 583160
 # A maior matrícula do grupo é a do Paulo Muniz (583160).
