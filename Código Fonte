@@ -1,10 +1,10 @@
-# PRIMEIRA QUESTÃO
-
 setwd("/Users/isadoracarneiro/Documents/Paulo Roberto/HOMEWORK")
 # Encontra o arquivo original enviado pela professora no computador.
 
+# PRIMEIRA QUESTÃO:
+
 arquivo_original <- read.csv("HW1_bike_sharing.csv")
-# Carrega o arquivo original no objeto arquivo_original.
+# Carrega o arquivo original nO objeto arquivo_original.
 
 M <- 583160
 # A maior matrícula do grupo é a do Paulo Muniz (583160).
@@ -14,3 +14,141 @@ r <- 1 + (M %% 100)
 
 data_group <- arquivo_original[r:(r + 299), ]
 # Salva a amostra de 300 elementos selecionadas no objeto data_group.
+
+#SEGUNDA QUESTÃO:
+
+data_group$total_user <- data_group$casual + data_group$registered
+# Cria a variável total_user, que soma os valores das colunas casual e registered.
+
+library(writexl)
+
+write_xlsx(data_group, "HW1_data_group.xlsx")
+
+# Calculo da média, mediana e moda das primeiras 10 amostras [1,10].
+
+library(DescTools)
+
+# temp
+temp_media10   <- mean(data_group$temp[1:10], na.rm = TRUE)
+temp_mediana10 <- median(data_group$temp[1:10], na.rm = TRUE)
+temp_moda10    <- Mode(data_group$temp[1:10], na.rm = TRUE)[1]
+
+# casual
+casual_media10   <- mean(data_group$casual[1:10], na.rm = TRUE)
+casual_mediana10 <- median(data_group$casual[1:10], na.rm = TRUE)
+casual_moda10    <- Mode(data_group$casual[1:10], na.rm = TRUE)[1]
+
+# registered
+registered_media10   <- mean(data_group$registered[1:10], na.rm = TRUE)
+registered_mediana10 <- median(data_group$registered[1:10], na.rm = TRUE)
+registered_moda10    <- Mode(data_group$registered[1:10], na.rm = TRUE)[1]
+
+# total_user
+total_user_media10   <- mean(data_group$total_user[1:10], na.rm = TRUE)
+total_user_mediana10 <- median(data_group$total_user[1:10], na.rm = TRUE)
+total_user_moda10    <- Mode(data_group$total_user[1:10], na.rm = TRUE)[1]
+
+tabela_para_10_amostras <- data.frame(
+  Variavel = c("temp", "casual", "registered", "total_user"),
+  Media = c(temp_media10, casual_media10, registered_media10, total_user_media10),
+  Mediana = c(temp_mediana10, casual_mediana10, registered_mediana10, total_user_mediana10),
+  Moda = c(temp_moda10, casual_moda10, registered_moda10, total_user_moda10)
+)
+
+print(tabela_para_10_amostras)
+
+# Calculo da média, mediana e moda de todas as amostras.
+
+library(DescTools)
+
+# temp
+temp_media   <- mean(data_group$temp, na.rm = TRUE)
+temp_mediana <- median(data_group$temp, na.rm = TRUE)
+temp_moda    <- Mode(data_group$temp, na.rm = TRUE)[1]
+
+# casual
+casual_media   <- mean(data_group$casual, na.rm = TRUE)
+casual_mediana <- median(data_group$casual, na.rm = TRUE)
+casual_moda  <- Mode(data_group$casual, na.rm = TRUE)[1]
+
+# registered
+registered_media   <- mean(data_group$registered, na.rm = TRUE)
+registered_mediana <- median(data_group$registered, na.rm = TRUE)
+registered_moda    <- Mode(data_group$registered, na.rm = TRUE)[1]
+
+# total_user
+total_user_media   <- mean(data_group$total_user, na.rm = TRUE)
+total_user_mediana <- median(data_group$total_user, na.rm = TRUE)
+total_user_moda    <- Mode(data_group$total_user, na.rm = TRUE)[1]
+
+tabela_para_todas_as_amostras <- data.frame(
+  Variavel = c("temp", "casual", "registered", "total_user"),
+  Media = c(temp_media, casual_media, registered_media, total_user_media),
+  Mediana = c(temp_mediana, casual_mediana, registered_mediana, total_user_mediana),
+  Moda = c(temp_moda, casual_moda, registered_moda, total_user_moda)
+)
+
+print(tabela_para_todas_as_amostras)
+
+# Calculo dos quartis (Q1,Q2 e Q3) e do intervalo interquartil para 10 amostras [1,10].
+# A variável numérica relevante escolhida foi total_user.
+
+# Calculo dos quartis para 10 amostras.
+total_user_Q1_10 <- quantile(data_group$total_user[1:10], 0.25, na.rm = TRUE) # 1º Quartil (25%)
+total_user_Q2_10 <- quantile(data_group$total_user[1:10], 0.50, na.rm = TRUE) # 2º Quartil (Mediana - 50%)
+total_user_Q3_10 <- quantile(data_group$total_user[1:10], 0.75, na.rm = TRUE) # 3º Quartil (75%)
+
+# Intervalo Interquartil para 10 amostras.
+total_user_IQR_10 <- IQR(data_group$total_user[1:10], na.rm = TRUE)
+
+tabela_dos_quartis_para_10_amostras <- data.frame(
+  Medida = c("Q1 (25%)", "Q2 (Mediana - 50%)", "Q3 (75%)", "IQR"),
+  Valor = c(total_user_Q1_10, total_user_Q2_10, total_user_Q3_10, total_user_IQR_10)
+)
+
+print(tabela_dos_quartis_para_10_amostras)
+
+# Calculo dos Outliners para as 10 amostras.
+
+limite_inferior_10 <- total_user_Q1_10 - 1.5 * total_user_IQR_10
+limite_superior_10 <- total_user_Q3_10 + 1.5 * total_user_IQR_10
+
+outliers_para_as_10 <- data_group[1:10,][data_group$total_user[1:10] < limite_inferior_10 | data_group$total_user[1:10] > limite_superior_10, ]
+
+tabela_dos_bigodes_para_10 <- data.frame(
+  Medida = c("Limite Inferior", "Limite Superior"),
+  Valor = c(limite_inferior_10, limite_superior_10)
+)
+
+print(tabela_dos_bigodes_para_10)
+
+# Calculo dos quartis (Q1,Q2 e Q3) e do intervalo interquartil para todas as amostras.
+
+# Calculo dos quartis para todas as amostras.
+total_user_Q1 <- quantile(data_group$total_user, 0.25, na.rm = TRUE) 
+total_user_Q2 <- quantile(data_group$total_user, 0.50, na.rm = TRUE)
+total_user_Q3 <- quantile(data_group$total_user, 0.75, na.rm = TRUE) 
+
+# Intervalo Interquartil para todas as amostras.
+total_user_IQR <- IQR(data_group$total_user, na.rm = TRUE)
+
+tabela_dos_quartis_para_todas_as_amostras <- data.frame(
+  Medida = c("Q1 (25%)", "Q2 (Mediana - 50%)", "Q3 (75%)", "IQR"),
+  Valor = c(total_user_Q1, total_user_Q2, total_user_Q3, total_user_IQR)
+)
+
+print(tabela_dos_quartis_para_todas_as_amostras)
+
+# Calculo dos Outliers para todas as amostras.
+
+limite_inferior <- total_user_Q1 - 1.5 * total_user_IQR
+limite_superior <- total_user_Q3 + 1.5 * total_user_IQR
+
+outliers_para_todas_as_amostras <- data_group[data_group$total_user < limite_inferior | data_group$total_user > limite_superior, ]
+
+tabela_dos_bigodes <- data.frame(
+  Medida = c("Limite Inferior", "Limite Superior"),
+  Valor = c(limite_inferior, limite_superior)
+)
+
+print(tabela_dos_bigodes)
