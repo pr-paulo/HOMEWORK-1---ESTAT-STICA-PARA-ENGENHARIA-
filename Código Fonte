@@ -15,7 +15,7 @@ r <- 1 + (M %% 100)
 data_group <- arquivo_original[r:(r + 299), ]
 # Salva a amostra de 300 elementos selecionadas no objeto data_group.
 
-#SEGUNDA QUESTÃO:
+# SEGUNDA QUESTÃO:
 
 data_group$total_user <- data_group$casual + data_group$registered
 # Cria a variável total_user, que soma os valores das colunas casual e registered.
@@ -172,22 +172,125 @@ tabela_item_5 <- data.frame(
   Valor = c(total_user_Q1, qtd_dias_baixa, proporcao_baixa)
 )
 
-# Salvar no Excel o que foi plotado.
+# TERCEIRA QUESTÃO:  
+
+# PARTE 1:
+data_group_3_1 <- data_group[, c("season", "total_user", "low_usage")] # Cria um data_set só com as variáveis season, total_user e low_usage.
+
+# Primavera (1):
+
+dados_primavera <- subset(data_group_3_1, season == 1) # Pegando só os dias que que são primavera. 
+
+# Calculo da média, mediana, desvio padrão e da proporção:
+media_primavera     <- mean(dados_primavera$total_user, na.rm = TRUE)
+mediana_primavera   <- median(dados_primavera$total_user, na.rm = TRUE)
+desvio_padrao_primavera        <- sd(dados_primavera$total_user, na.rm = TRUE)
+proporcao_primavera <- mean(dados_primavera$low_usage, na.rm = TRUE)
+
+# Verão (2):
+
+dados_verao <- subset(data_group_3_1, season == 2) # Pegando só os dias que que são verão. 
+
+# Calculo da média, mediana, desvio padrão e da proporção:
+media_verao     <- mean(dados_verao$total_user, na.rm = TRUE)
+mediana_verao   <- median(dados_verao$total_user, na.rm = TRUE)
+desvio_padrao_verao        <- sd(dados_verao$total_user, na.rm = TRUE)
+proporcao_verao <- mean(dados_verao$low_usage, na.rm = TRUE)
+
+# Outono (3):
+
+dados_outono <- subset(data_group_3_1, season == 3) # Pegando só os dias que que são Outono. 
+
+# Calculo da média, mediana, desvio padrão e da proporção:
+media_outono     <- mean(dados_outono$total_user, na.rm = TRUE)
+mediana_outono   <- median(dados_outono$total_user, na.rm = TRUE)
+desvio_padrao_outono        <- sd(dados_outono$total_user, na.rm = TRUE)
+proporcao_outono <- mean(dados_outono$low_usage, na.rm = TRUE)
+
+# Verão (4):
+
+dados_inverno <- subset(data_group_3_1, season == 4) # Pegando só os dias que que são inverno. 
+
+# Calculo da média, mediana, desvio padrão e da proporção:
+media_inverno     <- mean(dados_inverno$total_user, na.rm = TRUE)
+mediana_inverno   <- median(dados_inverno$total_user, na.rm = TRUE)
+desvio_padrao_inverno        <- sd(dados_inverno$total_user, na.rm = TRUE)
+proporcao_inverno <- mean(dados_inverno$low_usage, na.rm = TRUE)
+
+tabela_3_1 <- data.frame(
+  Estacao = c("Primavera (1)", "Verão (2)", "Outono (3)", "Inverno (4)"),
+  Media = c(media_primavera, media_verao, media_outono, media_inverno),
+  Mediana = c(mediana_primavera, mediana_verao, mediana_outono, mediana_inverno),
+  Desvio_Padrao = c(desvio_padrao_primavera, desvio_padrao_verao, desvio_padrao_outono, desvio_padrao_inverno),
+  Proporcao_low_usage = c(proporcao_primavera, proporcao_verao, proporcao_outono, proporcao_inverno)
+)
+
+data_group_3_1$estacao_fator <- factor(data_group_3_1$season, levels = c(1, 2, 3, 4), labels = c("Primavera (1)", "Verão (2)", "Outono (3)", "Inverno (4)")) # Previni erro quando for plotar o boxplot, pois é possível que no nosso dataset não tenha todas as seasons.
+
+boxplot(total_user ~ estacao_fator, 
+        data = data_group_3_1,
+        main = "Boxplots das Seasons",
+        xlab = "Estação do Ano",
+        ylab = "Total de Usuários",
+        col = c("orange", "yellow", "lightblue", "blue"),
+        drop = FALSE)
+
+# PARTE 2:
+data_group_3_2 <- data_group[, c("weathersit", "total_user", "low_usage")] # Cria um data_set só com as variáveis weathersit, total_user e low_usage.
+
+# Céu limpo (1):
+
+dados_limpo <- subset(data_group_3_2, weathersit == 1) # Pegando só os dias com céu limpo. 
+
+# Calculo da média, desvio padrão e da proporção:
+media_limpo          <- mean(dados_limpo$total_user, na.rm = TRUE)
+desvio_padrao_limpo  <- sd(dados_limpo$total_user, na.rm = TRUE)
+proporcao_limpo      <- mean(dados_limpo$low_usage, na.rm = TRUE)
+
+# Nublado (2):
+
+dados_nublado <- subset(data_group_3_2, weathersit == 2) # Pegando só os dias nublados. 
+
+# Calculo da média, desvio padrão e da proporção:
+media_nublado          <- mean(dados_nublado$total_user, na.rm = TRUE)
+desvio_padrao_nublado  <- sd(dados_nublado$total_user, na.rm = TRUE)
+proporcao_nublado      <- mean(dados_nublado$low_usage, na.rm = TRUE)
+
+# Chuva fraca (3):
+
+dados_chuva_fraca <- subset(data_group_3_2, weathersit == 3) # Pegando só os dias de chuva fraca. 
+
+# Calculo da média, desvio padrão e da proporção:
+media_chuva_fraca          <- mean(dados_chuva_fraca$total_user, na.rm = TRUE)
+desvio_padrao_chuva_fraca  <- sd(dados_chuva_fraca$total_user, na.rm = TRUE)
+proporcao_chuva_fraca      <- mean(dados_chuva_fraca$low_usage, na.rm = TRUE)
+
+# Chuva forte (4):
+
+dados_chuva_forte <- subset(data_group_3_2, weathersit == 4) # Pegando só os dias de chuva forte. 
+
+# Calculo da média, desvio padrão e da proporção:
+media_chuva_forte          <- mean(dados_chuva_forte$total_user, na.rm = TRUE)
+desvio_padrao_chuva_forte  <- sd(dados_chuva_forte$total_user, na.rm = TRUE)
+proporcao_chuva_forte      <- mean(dados_chuva_forte$low_usage, na.rm = TRUE)
+
+tabela_3_2 <- data.frame(
+  Clima = c("Céu limpo (1)", "Nublado (2)", "Chuva fraca (3)", "Chuva forte (4)"),
+  Media = c(media_limpo, media_nublado, media_chuva_fraca, media_chuva_forte),
+  Desvio_Padrao = c(desvio_padrao_limpo, desvio_padrao_nublado, desvio_padrao_chuva_fraca, desvio_padrao_chuva_forte),
+  Proporcao_low_usage = c(proporcao_limpo, proporcao_nublado, proporcao_chuva_fraca, proporcao_chuva_forte)
+)
 
 library(openxlsx)
 
-lista_para_excel <- list(
-  "arquivo_original"                    = arquivo_original,
-  "data_group"                          = data_group,
-  "outliers_para_as_10"                 = outliers_para_as_10,
-  "outliers_para_todas_as_amostras"     = outliers_para_todas_as_amostras,
-  "tabela_dos_bigodes"                  = tabela_dos_bigodes,
-  "tabela_dos_bigodes_para_10"          = tabela_dos_bigodes_para_10,
-  "tabela_dos_quartis_para_10"          = tabela_dos_quartis_para_10_amostras,
-  "tabela_quartis_todas_amostras"       = tabela_dos_quartis_para_todas_as_amostras,
-  "tabela_item_5"                       = tabela_item_5,
-  "tabela_para_10_amostras"             = tabela_para_10_amostras,
-  "tabela_para_todas_as_amostras"       = tabela_para_todas_as_amostras
-)
+write.xlsx(tabela_3_2, file = "tabela_3_2.xlsx")
 
-write.xlsx(lista_para_excel, file = "Resultados_Questao_2.xlsx")
+data_group_3_2$clima_fator <- factor(data_group_3_2$weathersit, levels = c(1, 2, 3, 4), labels = c("Céu limpo (1)", "Nublado (2)", "Chuva fraca (3)", "Chuva forte (4)"))  # Previni erro quando for plotar o boxplot, pois é possível que no nosso dataset não tenha todas as weathersits. 
+
+boxplot(total_user ~ clima_fator, 
+        data = data_group_3_2,
+        main = "Boxplots das Weathersits",
+        xlab = "Condição Meteorológica",
+        ylab = "Total de Usuários",
+        col = c("lightskyblue", "lightgray", "steelblue", "darkblue"),
+        drop = FALSE)
