@@ -55,8 +55,6 @@ tabela_para_10_amostras <- data.frame(
   Moda = c(temp_moda10, casual_moda10, registered_moda10, total_user_moda10)
 )
 
-print(tabela_para_10_amostras)
-
 # Calculo da média, mediana e moda de todas as amostras.
 
 library(DescTools)
@@ -88,8 +86,6 @@ tabela_para_todas_as_amostras <- data.frame(
   Moda = c(temp_moda, casual_moda, registered_moda, total_user_moda)
 )
 
-print(tabela_para_todas_as_amostras)
-
 # Calculo dos quartis (Q1,Q2 e Q3) e do intervalo interquartil para 10 amostras [1,10].
 # A variável numérica relevante escolhida foi total_user.
 
@@ -106,8 +102,6 @@ tabela_dos_quartis_para_10_amostras <- data.frame(
   Valor = c(total_user_Q1_10, total_user_Q2_10, total_user_Q3_10, total_user_IQR_10)
 )
 
-print(tabela_dos_quartis_para_10_amostras)
-
 # Calculo dos Outliners para as 10 amostras.
 
 limite_inferior_10 <- total_user_Q1_10 - 1.5 * total_user_IQR_10
@@ -119,8 +113,6 @@ tabela_dos_bigodes_para_10 <- data.frame(
   Medida = c("Limite Inferior", "Limite Superior"),
   Valor = c(limite_inferior_10, limite_superior_10)
 )
-
-print(tabela_dos_bigodes_para_10)
 
 # Calculo dos quartis (Q1,Q2 e Q3) e do intervalo interquartil para todas as amostras.
 
@@ -137,8 +129,6 @@ tabela_dos_quartis_para_todas_as_amostras <- data.frame(
   Valor = c(total_user_Q1, total_user_Q2, total_user_Q3, total_user_IQR)
 )
 
-print(tabela_dos_quartis_para_todas_as_amostras)
-
 # Calculo dos Outliers para todas as amostras.
 
 limite_inferior <- total_user_Q1 - 1.5 * total_user_IQR
@@ -151,4 +141,53 @@ tabela_dos_bigodes <- data.frame(
   Valor = c(limite_inferior, limite_superior)
 )
 
-print(tabela_dos_bigodes)
+# Histograma do total_user: 
+
+hist(data_group$total_user,
+     main = "Histograma do Total_User",
+     xlab = "Total de Usuários",
+     ylab = "Frequência Absoluta",
+     col = "blue",
+     border = "white",
+     xlim = c(0, 7000))
+
+# Boxplot do total_user:
+
+boxplot(data_group$total_user,
+        main = "Boxplot do Total_User",
+        ylab = "Total de Usuários",
+        col = "red",
+        outline = TRUE,
+        ylim = c(0, 7000))
+
+# Tópico 5 da questão 2:
+
+data_group$low_usage <- ifelse(data_group$total_user < total_user_Q1, 1, 0) # Vereifica se o dia o dia foi um dia de baixa utilização e salva em low_usage.
+
+qtd_dias_baixa <- sum(data_group$low_usage == 1, na.rm = TRUE) # Quantidade de dias de baixa utilização.
+proporcao_baixa <- sum(data_group$low_usage, na.rm = TRUE) / nrow(data_group) # Proporção desses dias, que é a soma dos dias de baixa utilização pelo total de dias.
+
+tabela_item_5 <- data.frame(
+  Métrica = c("Q1", "Quantidade de dias de baixa utilização", "Proporção de dias de baixa utilização"),
+  Valor = c(total_user_Q1, qtd_dias_baixa, proporcao_baixa)
+)
+
+# Salvar no Excel o que foi plotado.
+
+library(openxlsx)
+
+lista_para_excel <- list(
+  "arquivo_original"                    = arquivo_original,
+  "data_group"                          = data_group,
+  "outliers_para_as_10"                 = outliers_para_as_10,
+  "outliers_para_todas_as_amostras"     = outliers_para_todas_as_amostras,
+  "tabela_dos_bigodes"                  = tabela_dos_bigodes,
+  "tabela_dos_bigodes_para_10"          = tabela_dos_bigodes_para_10,
+  "tabela_dos_quartis_para_10"          = tabela_dos_quartis_para_10_amostras,
+  "tabela_quartis_todas_amostras"       = tabela_dos_quartis_para_todas_as_amostras,
+  "tabela_item_5"                       = tabela_item_5,
+  "tabela_para_10_amostras"             = tabela_para_10_amostras,
+  "tabela_para_todas_as_amostras"       = tabela_para_todas_as_amostras
+)
+
+write.xlsx(lista_para_excel, file = "Resultados_Questao_2.xlsx")
