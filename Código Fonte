@@ -177,6 +177,21 @@ tabela_item_5 <- data.frame(
 # PARTE 1:
 data_group_3_1 <- data_group[, c("season", "total_user", "low_usage")] # Cria um data_set só com as variáveis season, total_user e low_usage.
 
+# Calculo do desvio padrão para as primeiras 10 amostras da primavera:
+
+dados_primavera_10 <- subset(data_group, season == 1)[1:10, ]
+
+desvio_padrao_primavera_10 <- sd(dados_primavera_10$total_user, na.rm = TRUE)
+
+tabela_sd_primavera_10 <- data.frame(
+  Estacao = "Primavera (1)",
+  Amostras = "1 a 10",
+  Desvio_Padrao = desvio_padrao_primavera_10
+)
+
+library(openxlsx)
+write.xlsx(tabela_sd_primavera_10, file = "tabela_sd_primavera_10.xlsx")
+
 # Primavera (1):
 
 dados_primavera <- subset(data_group_3_1, season == 1) # Pegando só os dias que que são primavera. 
@@ -294,3 +309,49 @@ boxplot(total_user ~ clima_fator,
         ylab = "Total de Usuários",
         col = c("lightskyblue", "lightgray", "steelblue", "darkblue"),
         drop = FALSE)
+
+# PARTE 3:
+
+# Para as 10 primeiras amostras:
+
+plot(data_group$temp[1:10], data_group$total_user[1:10],
+     main = "Temperatura vs Total de Usuários (10 Primeiras Amostras)",
+     xlab = "temp",
+     ylab = "total_user",
+     pch = 19,               
+     col = "blue",     
+     frame.plot = TRUE)
+
+abline(lm(data_group$total_user[1:10] ~ data_group$temp[1:10]), col = "red", lwd = 2)
+
+cor_temp_user_10 <- cor(data_group$temp[1:10], data_group$total_user[1:10], use = "complete.obs") # Calcula o coeficiente de correlação para as 10 primeiras amostras.
+
+tabela_3_3_10 <- data.frame(
+  Amostras = "1 a 10",
+  Variaveis = "temp vs total_user",
+  Correlacao_Pearson = cor_temp_user_10)
+
+library(openxlsx)
+write.xlsx(tabela_3_3_10, file = "tabela_3_3_10.xlsx")
+
+# Para todas as amostras: 
+
+plot(data_group$temp, data_group$total_user,
+     main = "Temperatura vs Total de Usuários",
+     xlab = "temp",
+     ylab = "total_user",
+     pch = 19,               
+     col = "blue",     
+     frame.plot = TRUE)
+
+abline(lm(total_user ~ temp, data = data_group), col = "red", lwd = 2)
+
+cor_temp_user <- cor(data_group$temp, data_group$total_user, use = "complete.obs") # Calcula o coeficiente de correlação.
+
+tabela_3_3 <- data.frame(
+  Variaveis = "temp vs total_user",
+  Correlacao_Pearson = cor_temp_user)
+
+library(openxlsx)
+
+write.xlsx(tabela_3_3, file = "tabela_3_3.xlsx")
