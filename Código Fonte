@@ -29,24 +29,24 @@ write_xlsx(data_group, "HW1_data_group.xlsx")
 library(DescTools)
 
 # temp
-temp_media10   <- mean(data_group$temp[1:10], na.rm = TRUE)
-temp_mediana10 <- median(data_group$temp[1:10], na.rm = TRUE)
-temp_moda10    <- Mode(data_group$temp[1:10], na.rm = TRUE)[1]
+temp_media10   <- mean(data_group$temp[1:10])
+temp_mediana10 <- median(data_group$temp[1:10])
+temp_moda10    <- Mode(data_group$temp[1:10])[1]
 
 # casual
-casual_media10   <- mean(data_group$casual[1:10], na.rm = TRUE)
-casual_mediana10 <- median(data_group$casual[1:10], na.rm = TRUE)
-casual_moda10    <- Mode(data_group$casual[1:10], na.rm = TRUE)[1]
+casual_media10   <- mean(data_group$casual[1:10])
+casual_mediana10 <- median(data_group$casual[1:10])
+casual_moda10    <- Mode(data_group$casual[1:10])[1]
 
 # registered
-registered_media10   <- mean(data_group$registered[1:10], na.rm = TRUE)
-registered_mediana10 <- median(data_group$registered[1:10], na.rm = TRUE)
-registered_moda10    <- Mode(data_group$registered[1:10], na.rm = TRUE)[1]
+registered_media10   <- mean(data_group$registered[1:10])
+registered_mediana10 <- median(data_group$registered[1:10])
+registered_moda10    <- Mode(data_group$registered[1:10])[1]
 
 # total_user
-total_user_media10   <- mean(data_group$total_user[1:10], na.rm = TRUE)
-total_user_mediana10 <- median(data_group$total_user[1:10], na.rm = TRUE)
-total_user_moda10    <- Mode(data_group$total_user[1:10], na.rm = TRUE)[1]
+total_user_media10   <- mean(data_group$total_user[1:10])
+total_user_mediana10 <- median(data_group$total_user[1:10])
+total_user_moda10    <- Mode(data_group$total_user[1:10])[1]
 
 tabela_para_10_amostras <- data.frame(
   Variavel = c("temp", "casual", "registered", "total_user"),
@@ -60,24 +60,24 @@ tabela_para_10_amostras <- data.frame(
 library(DescTools)
 
 # temp
-temp_media   <- mean(data_group$temp, na.rm = TRUE)
-temp_mediana <- median(data_group$temp, na.rm = TRUE)
-temp_moda    <- Mode(data_group$temp, na.rm = TRUE)[1]
+temp_media   <- mean(data_group$temp)
+temp_mediana <- median(data_group$temp)
+temp_moda    <- Mode(data_group$temp)[1]
 
 # casual
-casual_media   <- mean(data_group$casual, na.rm = TRUE)
-casual_mediana <- median(data_group$casual, na.rm = TRUE)
-casual_moda  <- Mode(data_group$casual, na.rm = TRUE)[1]
+casual_media   <- mean(data_group$casual)
+casual_mediana <- median(data_group$casual)
+casual_moda  <- Mode(data_group$casual)[1]
 
 # registered
-registered_media   <- mean(data_group$registered, na.rm = TRUE)
-registered_mediana <- median(data_group$registered, na.rm = TRUE)
-registered_moda    <- Mode(data_group$registered, na.rm = TRUE)[1]
+registered_media   <- mean(data_group$registered)
+registered_mediana <- median(data_group$registered)
+registered_moda    <- Mode(data_group$registered)[1]
 
 # total_user
-total_user_media   <- mean(data_group$total_user, na.rm = TRUE)
-total_user_mediana <- median(data_group$total_user, na.rm = TRUE)
-total_user_moda    <- Mode(data_group$total_user, na.rm = TRUE)[1]
+total_user_media   <- mean(data_group$total_user)
+total_user_mediana <- median(data_group$total_user)
+total_user_moda    <- Mode(data_group$total_user)[1]
 
 tabela_para_todas_as_amostras <- data.frame(
   Variavel = c("temp", "casual", "registered", "total_user"),
@@ -90,12 +90,12 @@ tabela_para_todas_as_amostras <- data.frame(
 # A variável numérica relevante escolhida foi total_user.
 
 # Calculo dos quartis para 10 amostras.
-total_user_Q1_10 <- quantile(data_group$total_user[1:10], 0.25, na.rm = TRUE) # 1º Quartil (25%)
-total_user_Q2_10 <- quantile(data_group$total_user[1:10], 0.50, na.rm = TRUE) # 2º Quartil (Mediana - 50%)
-total_user_Q3_10 <- quantile(data_group$total_user[1:10], 0.75, na.rm = TRUE) # 3º Quartil (75%)
+total_user_Q1_10 <- quantile(data_group$total_user[1:10], 0.25) # 1º Quartil (25%)
+total_user_Q2_10 <- quantile(data_group$total_user[1:10], 0.50) # 2º Quartil (Mediana - 50%)
+total_user_Q3_10 <- quantile(data_group$total_user[1:10], 0.75) # 3º Quartil (75%)
 
 # Intervalo Interquartil para 10 amostras.
-total_user_IQR_10 <- IQR(data_group$total_user[1:10], na.rm = TRUE)
+total_user_IQR_10 <- IQR(data_group$total_user[1:10])
 
 tabela_dos_quartis_para_10_amostras <- data.frame(
   Medida = c("Q1 (25%)", "Q2 (Mediana - 50%)", "Q3 (75%)", "IQR"),
@@ -117,12 +117,12 @@ tabela_dos_bigodes_para_10 <- data.frame(
 # Calculo dos quartis (Q1,Q2 e Q3) e do intervalo interquartil para todas as amostras.
 
 # Calculo dos quartis para todas as amostras.
-total_user_Q1 <- quantile(data_group$total_user, 0.25, na.rm = TRUE) 
-total_user_Q2 <- quantile(data_group$total_user, 0.50, na.rm = TRUE)
-total_user_Q3 <- quantile(data_group$total_user, 0.75, na.rm = TRUE) 
+total_user_Q1 <- quantile(data_group$total_user, 0.25) 
+total_user_Q2 <- quantile(data_group$total_user, 0.50)
+total_user_Q3 <- quantile(data_group$total_user, 0.75) 
 
 # Intervalo Interquartil para todas as amostras.
-total_user_IQR <- IQR(data_group$total_user, na.rm = TRUE)
+total_user_IQR <- IQR(data_group$total_user)
 
 tabela_dos_quartis_para_todas_as_amostras <- data.frame(
   Medida = c("Q1 (25%)", "Q2 (Mediana - 50%)", "Q3 (75%)", "IQR"),
@@ -164,8 +164,8 @@ boxplot(data_group$total_user,
 
 data_group$low_usage <- ifelse(data_group$total_user < total_user_Q1, 1, 0) # Vereifica se o dia o dia foi um dia de baixa utilização e salva em low_usage.
 
-qtd_dias_baixa <- sum(data_group$low_usage == 1, na.rm = TRUE) # Quantidade de dias de baixa utilização.
-proporcao_baixa <- sum(data_group$low_usage, na.rm = TRUE) / nrow(data_group) # Proporção desses dias, que é a soma dos dias de baixa utilização pelo total de dias.
+qtd_dias_baixa <- sum(data_group$low_usage == 1) # Quantidade de dias de baixa utilização.
+proporcao_baixa <- sum(data_group$low_usage) / nrow(data_group) # Proporção desses dias, que é a soma dos dias de baixa utilização pelo total de dias.
 
 tabela_item_5 <- data.frame(
   Métrica = c("Q1", "Quantidade de dias de baixa utilização", "Proporção de dias de baixa utilização"),
@@ -181,7 +181,7 @@ data_group_3_1 <- data_group[, c("season", "total_user", "low_usage")] # Cria um
 
 dados_primavera_10 <- subset(data_group, season == 1)[1:10, ]
 
-desvio_padrao_primavera_10 <- sd(dados_primavera_10$total_user, na.rm = TRUE)
+desvio_padrao_primavera_10 <- sd(dados_primavera_10$total_user)
 
 tabela_sd_primavera_10 <- data.frame(
   Estacao = "Primavera (1)",
@@ -197,40 +197,40 @@ write.xlsx(tabela_sd_primavera_10, file = "tabela_sd_primavera_10.xlsx")
 dados_primavera <- subset(data_group_3_1, season == 1) # Pegando só os dias que que são primavera. 
 
 # Calculo da média, mediana, desvio padrão e da proporção:
-media_primavera     <- mean(dados_primavera$total_user, na.rm = TRUE)
-mediana_primavera   <- median(dados_primavera$total_user, na.rm = TRUE)
-desvio_padrao_primavera        <- sd(dados_primavera$total_user, na.rm = TRUE)
-proporcao_primavera <- mean(dados_primavera$low_usage, na.rm = TRUE)
+media_primavera         <- mean(dados_primavera$total_user)
+mediana_primavera       <- median(dados_primavera$total_user)
+desvio_padrao_primavera <- sd(dados_primavera$total_user)
+proporcao_primavera     <- mean(dados_primavera$low_usage)
 
 # Verão (2):
 
 dados_verao <- subset(data_group_3_1, season == 2) # Pegando só os dias que que são verão. 
 
 # Calculo da média, mediana, desvio padrão e da proporção:
-media_verao     <- mean(dados_verao$total_user, na.rm = TRUE)
-mediana_verao   <- median(dados_verao$total_user, na.rm = TRUE)
-desvio_padrao_verao        <- sd(dados_verao$total_user, na.rm = TRUE)
-proporcao_verao <- mean(dados_verao$low_usage, na.rm = TRUE)
+media_verao         <- mean(dados_verao$total_user)
+mediana_verao       <- median(dados_verao$total_user)
+desvio_padrao_verao <- sd(dados_verao$total_user)
+proporcao_verao     <- mean(dados_verao$low_usage)
 
 # Outono (3):
 
 dados_outono <- subset(data_group_3_1, season == 3) # Pegando só os dias que que são Outono. 
 
 # Calculo da média, mediana, desvio padrão e da proporção:
-media_outono     <- mean(dados_outono$total_user, na.rm = TRUE)
-mediana_outono   <- median(dados_outono$total_user, na.rm = TRUE)
-desvio_padrao_outono        <- sd(dados_outono$total_user, na.rm = TRUE)
-proporcao_outono <- mean(dados_outono$low_usage, na.rm = TRUE)
+media_outono         <- mean(dados_outono$total_user)
+mediana_outono       <- median(dados_outono$total_user)
+desvio_padrao_outono <- sd(dados_outono$total_user)
+proporcao_outono     <- mean(dados_outono$low_usage)
 
 # Verão (4):
 
 dados_inverno <- subset(data_group_3_1, season == 4) # Pegando só os dias que que são inverno. 
 
 # Calculo da média, mediana, desvio padrão e da proporção:
-media_inverno     <- mean(dados_inverno$total_user, na.rm = TRUE)
-mediana_inverno   <- median(dados_inverno$total_user, na.rm = TRUE)
-desvio_padrao_inverno        <- sd(dados_inverno$total_user, na.rm = TRUE)
-proporcao_inverno <- mean(dados_inverno$low_usage, na.rm = TRUE)
+media_inverno         <- mean(dados_inverno$total_user)
+mediana_inverno       <- median(dados_inverno$total_user)
+desvio_padrao_inverno <- sd(dados_inverno$total_user)
+proporcao_inverno     <- mean(dados_inverno$low_usage)
 
 tabela_3_1 <- data.frame(
   Estacao = c("Primavera (1)", "Verão (2)", "Outono (3)", "Inverno (4)"),
@@ -258,36 +258,36 @@ data_group_3_2 <- data_group[, c("weathersit", "total_user", "low_usage")] # Cri
 dados_limpo <- subset(data_group_3_2, weathersit == 1) # Pegando só os dias com céu limpo. 
 
 # Calculo da média, desvio padrão e da proporção:
-media_limpo          <- mean(dados_limpo$total_user, na.rm = TRUE)
-desvio_padrao_limpo  <- sd(dados_limpo$total_user, na.rm = TRUE)
-proporcao_limpo      <- mean(dados_limpo$low_usage, na.rm = TRUE)
+media_limpo          <- mean(dados_limpo$total_user)
+desvio_padrao_limpo  <- sd(dados_limpo$total_user)
+proporcao_limpo      <- mean(dados_limpo$low_usage)
 
 # Nublado (2):
 
 dados_nublado <- subset(data_group_3_2, weathersit == 2) # Pegando só os dias nublados. 
 
 # Calculo da média, desvio padrão e da proporção:
-media_nublado          <- mean(dados_nublado$total_user, na.rm = TRUE)
-desvio_padrao_nublado  <- sd(dados_nublado$total_user, na.rm = TRUE)
-proporcao_nublado      <- mean(dados_nublado$low_usage, na.rm = TRUE)
+media_nublado          <- mean(dados_nublado$total_user)
+desvio_padrao_nublado  <- sd(dados_nublado$total_user)
+proporcao_nublado      <- mean(dados_nublado$low_usage)
 
 # Chuva fraca (3):
 
 dados_chuva_fraca <- subset(data_group_3_2, weathersit == 3) # Pegando só os dias de chuva fraca. 
 
 # Calculo da média, desvio padrão e da proporção:
-media_chuva_fraca          <- mean(dados_chuva_fraca$total_user, na.rm = TRUE)
-desvio_padrao_chuva_fraca  <- sd(dados_chuva_fraca$total_user, na.rm = TRUE)
-proporcao_chuva_fraca      <- mean(dados_chuva_fraca$low_usage, na.rm = TRUE)
+media_chuva_fraca          <- mean(dados_chuva_fraca$total_user)
+desvio_padrao_chuva_fraca  <- sd(dados_chuva_fraca$total_user)
+proporcao_chuva_fraca      <- mean(dados_chuva_fraca$low_usage)
 
 # Chuva forte (4):
 
 dados_chuva_forte <- subset(data_group_3_2, weathersit == 4) # Pegando só os dias de chuva forte. 
 
 # Calculo da média, desvio padrão e da proporção:
-media_chuva_forte          <- mean(dados_chuva_forte$total_user, na.rm = TRUE)
-desvio_padrao_chuva_forte  <- sd(dados_chuva_forte$total_user, na.rm = TRUE)
-proporcao_chuva_forte      <- mean(dados_chuva_forte$low_usage, na.rm = TRUE)
+media_chuva_forte          <- mean(dados_chuva_forte$total_user)
+desvio_padrao_chuva_forte  <- sd(dados_chuva_forte$total_user)
+proporcao_chuva_forte      <- mean(dados_chuva_forte$low_usage)
 
 tabela_3_2 <- data.frame(
   Clima = c("Céu limpo (1)", "Nublado (2)", "Chuva fraca (3)", "Chuva forte (4)"),
@@ -319,7 +319,7 @@ plot(data_group$temp[1:10], data_group$total_user[1:10],
      xlab = "temp",
      ylab = "total_user",
      pch = 19,               
-     col = "blue",     
+     col = "blue",      
      frame.plot = TRUE)
 
 abline(lm(data_group$total_user[1:10] ~ data_group$temp[1:10]), col = "red", lwd = 2)
@@ -341,7 +341,7 @@ plot(data_group$temp, data_group$total_user,
      xlab = "temp",
      ylab = "total_user",
      pch = 19,               
-     col = "blue",     
+     col = "blue",      
      frame.plot = TRUE)
 
 abline(lm(total_user ~ temp, data = data_group), col = "red", lwd = 2)
@@ -355,3 +355,41 @@ tabela_3_3 <- data.frame(
 library(openxlsx)
 
 write.xlsx(tabela_3_3, file = "tabela_3_3.xlsx")
+
+# QUARTA QUESTÃO:
+
+# ITEM A
+
+data_group$dteday <- as.Date(data_group$dteday, format = "%Y-%m-%d") 
+
+# Gráfico da Série Temporal
+plot(data_group$dteday, data_group$total_user, type = "l", col = "grey", lwd = 2,
+     main = "Série Temporal do Uso do Sistema (02/03/2011 a 26/12/2011)",
+     xlab = "Data", ylab = "Total de Usuários")
+
+abline(h = 3116.5, col = "red", lty = 2, lwd = 1)   # Estamos utilizando o valor do primeiro quartil, que já foi calculado anteriormente, para mostrar os períodos de baixa utilização.  
+abline(h = 4681.0, col = "green", lty = 2, lwd = 1)  # Estamos utilizando o valor do terceiro quartil, que já foi calculado anteriormente, para mostrar os períodos de alta utilização.  
+
+legend("topleft", 
+       legend = c("total_user", "Q3 - Alto Uso", "Q1 - Baixo Uso"), 
+       col = c("grey", "green", "red"), 
+       lty = c(1, 2, 2), 
+       lwd = c(2, 1, 1),
+       cex = 0.6)  
+
+# ITEM B
+
+# ITEM C
+
+cores <- ifelse(data_group$low_usage == 1, "red", "green") # O ponto que for low_usage fica vermelhor e o que não for fica verde.
+
+plot(data_group$temp, data_group$total_user,
+     col = cores, pch = 19,
+     main = "Temperatura vs Total de Usuários",
+     xlab = "temp", ylab = "total_user")
+
+abline(lm(total_user ~ temp, data = data_group), col = "black", lwd = 2) # Utiliza a mesma reta de tendência global da Questão 3.
+
+legend("topleft", 
+       legend = c("low_usage = 0", "low_usage = 1"),
+       col = c("green", "red"), pch = 19, cex = 0.6)
