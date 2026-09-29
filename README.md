@@ -1,8 +1,10 @@
 # HOMEWORK-1
 
 ## Divisão Base das Questões e do Relatório:
+
+Código em R (completo) - Paulo Roberto   
 Fundamentação teórica/introdução - Carmen
-```
+
 Questão 1 (inteira) - Jefter  
 Questão 2   
 * item 1 - Jefter  
@@ -20,4 +22,5 @@ Questão 4
 * item 2 -   
 * item 3 -   
 * item 4 - Carmen  
-```
+
+---
