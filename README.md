@@ -5,7 +5,7 @@ No primeiro Homework foi proposto analisar um conjunto de dados de 300 amostras 
 ## Tecnologias
 Para o desenvolvimento da atividade, utilizou-se a plataforma Overleaf para a elaboração do relatório em LaTeX e a linguagem em R, por meio do RStudio, para a análise prática das variáveis e para a construção de gráficos.  
 
-# Linguagem em R
+### Linguagem em R
 
 No código fonte foram utilizadas, além dos pacotes nativos da linguagem, as bibliotecas *openxlsx* - para salvar as tabelas plotadas pelo código no Excel - e *DescTools*, para calcular a moda das variáveis.
 
