@@ -7,9 +7,7 @@ Para o desenvolvimento da atividade, utilizou-se a plataforma Overleaf para a el
 
 ### Linguagem em R
 
-No código fonte foram utilizadas, além dos pacotes nativos da linguagem, as bibliotecas *openxlsx* - para salvar as tabelas plotadas pelo código no Excel - e *DescTools*, para calcular a moda das variáveis.
-
-Vale ressaltar que a instrução de diretório de trabalho (setwd("/Users/isadoracarneiro/Documents/Paulo Roberto/HOMEWORK")) na quarta linha do código faz referência ao caminho local utilizado durante o desenvolvimento. Logo, é necessário atualizar esse caminho para o diretório correspondente no novo computador.
+No código fonte foram utilizadas, além dos pacotes nativos da linguagem, as bibliotecas *openxlsx* - para salvar as tabelas plotadas pelo código no Excel - e *DescTools*, para calcular a moda das variáveis. Além disso, a instrução de diretório de trabalho (setwd("/Users/isadoracarneiro/Documents/Paulo Roberto/HOMEWORK")) faz referência ao caminho local utilizado durante o desenvolvimento. Logo, é necessário atualizar esse caminho para o diretório correspondente no novo computador.
 
 ## Divisão Base das Questões e do Relatório:
 
