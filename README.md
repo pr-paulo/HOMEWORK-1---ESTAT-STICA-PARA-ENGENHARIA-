@@ -2,10 +2,11 @@
 
 No primeiro Homework foi proposto analisar um conjunto de dados de 300 amostras relativas ao compartilhamento de bicicletas em uma cidade dos Estados Unidos. Nesse sentido, no decorrer da atividade foram feitos estudos relativos às variáveis do conjunto e às variáveis criadas, bem como às suas inter-relações. Por fim, tudo foi sintetizado no relatório.
 
-## Tecnologias
+## Tecnologias:
+
 Para o desenvolvimento da atividade, utilizou-se a plataforma Overleaf para a elaboração do relatório em LaTeX e a linguagem em R, por meio do RStudio, para a análise prática das variáveis e para a construção de gráficos.  
 
-### Linguagem em R
+### Linguagem em R:
 
 No código fonte foram utilizadas, além dos pacotes nativos da linguagem, as bibliotecas *openxlsx* - para salvar as tabelas plotadas pelo código no Excel - e *DescTools*, para calcular a moda das variáveis. Além disso, a instrução de diretório de trabalho (setwd("/Users/isadoracarneiro/Documents/Paulo Roberto/HOMEWORK")) faz referência ao caminho local utilizado durante o desenvolvimento. Logo, é necessário atualizar esse caminho para o diretório correspondente no novo computador.
 
@@ -14,7 +15,7 @@ No código fonte foram utilizadas, além dos pacotes nativos da linguagem, as bi
 ##### Código em R (completo) - Paulo Roberto 
 ##### README - Paulo Roberto/Carmen
 ##### Fundamentação teórica/introdução - Carmen
-##### Desenvolvimento das questões no relatório 
+##### Desenvolvimento das questões no relatório:
 Questão 1 (inteira) - Jefter  
 
 Questão 2   
