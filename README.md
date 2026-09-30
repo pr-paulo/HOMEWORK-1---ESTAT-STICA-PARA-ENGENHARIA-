@@ -24,9 +24,9 @@ Questão 2
 
 Questão 3  
 * item 1 - Carmen   
-* item 2 -  
-* item 3 -   
-* item 4 -  
+* item 2 - Muniz
+* item 3 - Muniz   
+* item 4 - Muniz 
 
 Questão 4  
 * item 1 - Carmen  
