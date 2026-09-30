@@ -1,10 +1,6 @@
 setwd("/Users/isadoracarneiro/Documents/Paulo Roberto/HOMEWORK")
 # Encontra o arquivo original enviado pela professora no computador.
 
-library(openxlsx)
-library(writexl)
-library(DescTools)
-
 # PRIMEIRA QUESTÃO:
 
 arquivo_original <- read.csv("HW1_bike_sharing.csv")
@@ -19,16 +15,18 @@ r <- 1 + (M %% 100)
 data_group <- arquivo_original[r:(r + 299), ]
 # Salva a amostra de 300 elementos selecionadas no objeto data_group.
 
-write.xlsx(data_group, file = "data_group.xlsx")
-
 # SEGUNDA QUESTÃO:
 
 data_group$total_user <- data_group$casual + data_group$registered
 # Cria a variável total_user, que soma os valores das colunas casual e registered.
 
+library(writexl)
+
 write_xlsx(data_group, "HW1_data_group.xlsx")
 
 # Calculo da média, mediana e moda das primeiras 10 amostras [1,10].
+
+library(DescTools)
 
 # temp
 temp_media10   <- mean(data_group$temp[1:10])
@@ -57,9 +55,9 @@ tabela_para_10_amostras <- data.frame(
   Moda = c(temp_moda10, casual_moda10, registered_moda10, total_user_moda10)
 )
 
-write.xlsx(tabela_para_10_amostras, file = "tabela_para_10_amostras.xlsx")
-
 # Calculo da média, mediana e moda de todas as amostras.
+
+library(DescTools)
 
 # temp
 temp_media   <- mean(data_group$temp)
@@ -88,8 +86,6 @@ tabela_para_todas_as_amostras <- data.frame(
   Moda = c(temp_moda, casual_moda, registered_moda, total_user_moda)
 )
 
-write.xlsx(tabela_para_todas_as_amostras, file = "tabela_para_todas_as_amostras.xlsx")
-
 # Calculo dos quartis (Q1,Q2 e Q3) e do intervalo interquartil para 10 amostras [1,10].
 # A variável numérica relevante escolhida foi total_user.
 
@@ -106,23 +102,17 @@ tabela_dos_quartis_para_10_amostras <- data.frame(
   Valor = c(total_user_Q1_10, total_user_Q2_10, total_user_Q3_10, total_user_IQR_10)
 )
 
-write.xlsx(tabela_dos_quartis_para_10_amostras, file = "tabela_dos_quartis_para_10_amostras.xlsx")
-
-# Calculo dos Outliers para as 10 amostras.
+# Calculo dos Outliners para as 10 amostras.
 
 limite_inferior_10 <- total_user_Q1_10 - 1.5 * total_user_IQR_10
 limite_superior_10 <- total_user_Q3_10 + 1.5 * total_user_IQR_10
 
 outliers_para_as_10 <- data_group[1:10,][data_group$total_user[1:10] < limite_inferior_10 | data_group$total_user[1:10] > limite_superior_10, ]
 
-write.xlsx(outliers_para_as_10, file = "outliers_para_as_10.xlsx")
-
 tabela_dos_bigodes_para_10 <- data.frame(
   Medida = c("Limite Inferior", "Limite Superior"),
   Valor = c(limite_inferior_10, limite_superior_10)
 )
-
-write.xlsx(tabela_dos_bigodes_para_10, file = "tabela_dos_bigodes_para_10.xlsx")
 
 # Calculo dos quartis (Q1,Q2 e Q3) e do intervalo interquartil para todas as amostras.
 
@@ -139,8 +129,6 @@ tabela_dos_quartis_para_todas_as_amostras <- data.frame(
   Valor = c(total_user_Q1, total_user_Q2, total_user_Q3, total_user_IQR)
 )
 
-write.xlsx(tabela_dos_quartis_para_todas_as_amostras, file = "tabela_dos_quartis_para_todas_as_amostras.xlsx")
-
 # Calculo dos Outliers para todas as amostras.
 
 limite_inferior <- total_user_Q1 - 1.5 * total_user_IQR
@@ -148,14 +136,10 @@ limite_superior <- total_user_Q3 + 1.5 * total_user_IQR
 
 outliers_para_todas_as_amostras <- data_group[data_group$total_user < limite_inferior | data_group$total_user > limite_superior, ]
 
-write.xlsx(outliers_para_todas_as_amostras, file = "outliers_para_todas_as_amostras.xlsx")
-
 tabela_dos_bigodes <- data.frame(
   Medida = c("Limite Inferior", "Limite Superior"),
   Valor = c(limite_inferior, limite_superior)
 )
-
-write.xlsx(tabela_dos_bigodes, file = "tabela_dos_bigodes.xlsx")
 
 # Histograma do total_user: 
 
@@ -188,20 +172,14 @@ tabela_item_5 <- data.frame(
   Valor = c(total_user_Q1, qtd_dias_baixa, proporcao_baixa)
 )
 
-write.xlsx(tabela_item_5, file = "tabela_item_5.xlsx")
-
 # TERCEIRA QUESTÃO:  
 
 # PARTE 1:
 data_group_3_1 <- data_group[, c("season", "total_user", "low_usage")] # Cria um data_set só com as variáveis season, total_user e low_usage.
 
-write.xlsx(data_group_3_1, file = "data_group_3_1.xlsx")
-
 # Calculo do desvio padrão para as primeiras 10 amostras da primavera:
 
 dados_primavera_10 <- subset(data_group, season == 1)[1:10, ]
-
-write.xlsx(dados_primavera_10, file = "dados_primavera_10.xlsx")
 
 desvio_padrao_primavera_10 <- sd(dados_primavera_10$total_user)
 
@@ -211,13 +189,12 @@ tabela_sd_primavera_10 <- data.frame(
   Desvio_Padrao = desvio_padrao_primavera_10
 )
 
+library(openxlsx)
 write.xlsx(tabela_sd_primavera_10, file = "tabela_sd_primavera_10.xlsx")
 
 # Primavera (1):
 
 dados_primavera <- subset(data_group_3_1, season == 1) # Pegando só os dias que que são primavera. 
-
-write.xlsx(dados_primavera, file = "dados_primavera.xlsx")
 
 # Calculo da média, mediana, desvio padrão e da proporção:
 media_primavera         <- mean(dados_primavera$total_user)
@@ -229,8 +206,6 @@ proporcao_primavera     <- mean(dados_primavera$low_usage)
 
 dados_verao <- subset(data_group_3_1, season == 2) # Pegando só os dias que que são verão. 
 
-write.xlsx(dados_verao, file = "dados_verao.xlsx")
-
 # Calculo da média, mediana, desvio padrão e da proporção:
 media_verao         <- mean(dados_verao$total_user)
 mediana_verao       <- median(dados_verao$total_user)
@@ -241,19 +216,15 @@ proporcao_verao     <- mean(dados_verao$low_usage)
 
 dados_outono <- subset(data_group_3_1, season == 3) # Pegando só os dias que que são Outono. 
 
-write.xlsx(dados_outono, file = "dados_outono.xlsx")
-
 # Calculo da média, mediana, desvio padrão e da proporção:
 media_outono         <- mean(dados_outono$total_user)
 mediana_outono       <- median(dados_outono$total_user)
 desvio_padrao_outono <- sd(dados_outono$total_user)
 proporcao_outono     <- mean(dados_outono$low_usage)
 
-# Inverno (4):
+# Verão (4):
 
 dados_inverno <- subset(data_group_3_1, season == 4) # Pegando só os dias que que são inverno. 
-
-write.xlsx(dados_inverno, file = "dados_inverno.xlsx")
 
 # Calculo da média, mediana, desvio padrão e da proporção:
 media_inverno         <- mean(dados_inverno$total_user)
@@ -269,8 +240,6 @@ tabela_3_1 <- data.frame(
   Proporcao_low_usage = c(proporcao_primavera, proporcao_verao, proporcao_outono, proporcao_inverno)
 )
 
-write.xlsx(tabela_3_1, file = "tabela_3_1.xlsx")
-
 data_group_3_1$estacao_fator <- factor(data_group_3_1$season, levels = c(1, 2, 3, 4), labels = c("Primavera (1)", "Verão (2)", "Outono (3)", "Inverno (4)")) # Previni erro quando for plotar o boxplot, pois é possível que no nosso dataset não tenha todas as seasons.
 
 boxplot(total_user ~ estacao_fator, 
@@ -284,13 +253,9 @@ boxplot(total_user ~ estacao_fator,
 # PARTE 2:
 data_group_3_2 <- data_group[, c("weathersit", "total_user", "low_usage")] # Cria um data_set só com as variáveis weathersit, total_user e low_usage.
 
-write.xlsx(data_group_3_2, file = "data_group_3_2.xlsx")
-
 # Céu limpo (1):
 
 dados_limpo <- subset(data_group_3_2, weathersit == 1) # Pegando só os dias com céu limpo. 
-
-write.xlsx(dados_limpo, file = "dados_limpo.xlsx")
 
 # Calculo da média, desvio padrão e da proporção:
 media_limpo          <- mean(dados_limpo$total_user)
@@ -301,8 +266,6 @@ proporcao_limpo      <- mean(dados_limpo$low_usage)
 
 dados_nublado <- subset(data_group_3_2, weathersit == 2) # Pegando só os dias nublados. 
 
-write.xlsx(dados_nublado, file = "dados_nublado.xlsx")
-
 # Calculo da média, desvio padrão e da proporção:
 media_nublado          <- mean(dados_nublado$total_user)
 desvio_padrao_nublado  <- sd(dados_nublado$total_user)
@@ -312,8 +275,6 @@ proporcao_nublado      <- mean(dados_nublado$low_usage)
 
 dados_chuva_fraca <- subset(data_group_3_2, weathersit == 3) # Pegando só os dias de chuva fraca. 
 
-write.xlsx(dados_chuva_fraca, file = "dados_chuva_fraca.xlsx")
-
 # Calculo da média, desvio padrão e da proporção:
 media_chuva_fraca          <- mean(dados_chuva_fraca$total_user)
 desvio_padrao_chuva_fraca  <- sd(dados_chuva_fraca$total_user)
@@ -322,8 +283,6 @@ proporcao_chuva_fraca      <- mean(dados_chuva_fraca$low_usage)
 # Chuva forte (4):
 
 dados_chuva_forte <- subset(data_group_3_2, weathersit == 4) # Pegando só os dias de chuva forte. 
-
-write.xlsx(dados_chuva_forte, file = "dados_chuva_forte.xlsx")
 
 # Calculo da média, desvio padrão e da proporção:
 media_chuva_forte          <- mean(dados_chuva_forte$total_user)
@@ -336,6 +295,8 @@ tabela_3_2 <- data.frame(
   Desvio_Padrao = c(desvio_padrao_limpo, desvio_padrao_nublado, desvio_padrao_chuva_fraca, desvio_padrao_chuva_forte),
   Proporcao_low_usage = c(proporcao_limpo, proporcao_nublado, proporcao_chuva_fraca, proporcao_chuva_forte)
 )
+
+library(openxlsx)
 
 write.xlsx(tabela_3_2, file = "tabela_3_2.xlsx")
 
@@ -370,6 +331,7 @@ tabela_3_3_10 <- data.frame(
   Variaveis = "temp vs total_user",
   Correlacao_Pearson = cor_temp_user_10)
 
+library(openxlsx)
 write.xlsx(tabela_3_3_10, file = "tabela_3_3_10.xlsx")
 
 # Para todas as amostras: 
@@ -390,6 +352,8 @@ tabela_3_3 <- data.frame(
   Variaveis = "temp vs total_user",
   Correlacao_Pearson = cor_temp_user)
 
+library(openxlsx)
+
 write.xlsx(tabela_3_3, file = "tabela_3_3.xlsx")
 
 # QUARTA QUESTÃO:
@@ -403,7 +367,7 @@ plot(data_group$dteday, data_group$total_user, type = "l", col = "grey", lwd = 2
      main = "Série Temporal do Uso do Sistema (02/03/2011 a 26/12/2011)",
      xlab = "Data", ylab = "Total de Usuários")
 
-abline(h = 3116.5, col = "red", lty = 2, lwd = 1)   # Estamos utilizando o valor do primeiro quartil, que já foi calculated anteriormente, para mostrar os períodos de baixa utilização.  
+abline(h = 3116.5, col = "red", lty = 2, lwd = 1)   # Estamos utilizando o valor do primeiro quartil, que já foi calculado anteriormente, para mostrar os períodos de baixa utilização.  
 abline(h = 4681.0, col = "green", lty = 2, lwd = 1)  # Estamos utilizando o valor do terceiro quartil, que já foi calculado anteriormente, para mostrar os períodos de alta utilização.  
 
 legend("topleft", 
@@ -437,8 +401,6 @@ tabela_4_2_season <- data.frame(
   Valor = eta_quadrado_season
 )
 
-write.xlsx(tabela_4_2_season, file = "tabela_4_2_season.xlsx")
-
 # Relação entre a variável temp e a total_user por meio do coeficiente de correlação de Pearson.
 
 correlacao_temp <- cor(data_group$temp, data_group$total_user, use = "complete.obs")
@@ -449,10 +411,9 @@ tabela_4_2_temp <- data.frame(
   Valor = correlacao_temp
 )
 
-write.xlsx(tabela_4_2_temp, file = "tabela_4_2_temp.xlsx")
-
 tabela_4_2 <- rbind(tabela_4_2_season, tabela_4_2_temp)
 
+library(openxlsx)
 write.xlsx(tabela_4_2, file = "tabela_4_2.xlsx")
 
 # ITEM C
