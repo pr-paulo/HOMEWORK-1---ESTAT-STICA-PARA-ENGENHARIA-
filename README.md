@@ -1,6 +1,6 @@
 ## HOMEWORK-1
 
-O primeiro Homework trata-se da analise de 300 amostras atreladas ao uso diário de bicicletas em uma cidade dos Estados Unidos. Neste sentido, visando entender a dinâmica entre as varáveis presentes no dataset, foram realizadas análises utilizando o R e cáculos teóricos, bem como construídos vários tipos de gráficos que relacionam as variáveis originais com as criadas ao longo da execução da atividade. Por fim, as conclusões foram reunidas num relatório que fundamenta a relevância de cada indicador no contexto do trabalho.
+No primeiro Homework foi proposto analisar um conjunto de dados de 300 amostras relativas ao compartilhamento de bicicletas em uma cidade dos Estados Unidos. Nesse sentido, no decorrer da atividade foram feitos estudos relativos às variáveis do conjunto e às variáveis criadas, bem como às suas inter-relações. Por fim, tudo foi sintetizado no relatório.
 
 ## Tecnologias
 Para o desenvolvimento desta atividade, utilizou-se a linguagem R (via ambiente RStudio) para a análise e processamento dos dados, e a plataforma Overleaf para a elaboração do relatório em LaTeX.
