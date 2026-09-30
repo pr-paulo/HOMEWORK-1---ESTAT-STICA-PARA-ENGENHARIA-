@@ -1,3 +1,6 @@
+library(openxlsx)
+library(DescTools)
+
 setwd("/Users/isadoracarneiro/Documents/Paulo Roberto/HOMEWORK")
 # Encontra o arquivo original enviado pela professora no computador.
 
@@ -20,13 +23,9 @@ data_group <- arquivo_original[r:(r + 299), ]
 data_group$total_user <- data_group$casual + data_group$registered
 # Cria a variável total_user, que soma os valores das colunas casual e registered.
 
-library(writexl)
-
-write_xlsx(data_group, "HW1_data_group.xlsx")
+write.xlsx(data_group, "HW1_data_group.xlsx")
 
 # Calculo da média, mediana e moda das primeiras 10 amostras [1,10].
-
-library(DescTools)
 
 # temp
 temp_media10   <- mean(data_group$temp[1:10])
@@ -57,8 +56,6 @@ tabela_para_10_amostras <- data.frame(
 
 # Calculo da média, mediana e moda de todas as amostras.
 
-library(DescTools)
-
 # temp
 temp_media   <- mean(data_group$temp)
 temp_mediana <- median(data_group$temp)
@@ -67,7 +64,7 @@ temp_moda    <- Mode(data_group$temp)[1]
 # casual
 casual_media   <- mean(data_group$casual)
 casual_mediana <- median(data_group$casual)
-casual_moda  <- Mode(data_group$casual)[1]
+casual_moda   <- Mode(data_group$casual)[1]
 
 # registered
 registered_media   <- mean(data_group$registered)
@@ -189,7 +186,6 @@ tabela_3_1_primavera_10 <- data.frame(
   Desvio_Padrao = desvio_padrao_primavera_10
 )
 
-library(openxlsx)
 write.xlsx(tabela_3_1_primavera_10, file = "tabela_3_1_primavera_10.xlsx")
 
 # Primavera (1):
@@ -296,8 +292,6 @@ tabela_3_2 <- data.frame(
   Proporcao_low_usage = c(proporcao_limpo, proporcao_nublado, proporcao_chuva_fraca, proporcao_chuva_forte)
 )
 
-library(openxlsx)
-
 write.xlsx(tabela_3_2, file = "tabela_3_2.xlsx")
 
 data_group_3_2$clima_fator <- factor(data_group_3_2$weathersit, levels = c(1, 2, 3, 4), labels = c("Céu limpo (1)", "Nublado (2)", "Chuva fraca (3)", "Chuva forte (4)"))  # Previni erro quando for plotar o boxplot, pois é possível que no nosso dataset não tenha todas as weathersits. 
@@ -331,7 +325,6 @@ tabela_3_3_10 <- data.frame(
   Variaveis = "temp vs total_user",
   Correlacao_Pearson = cor_temp_user_10)
 
-library(openxlsx)
 write.xlsx(tabela_3_3_10, file = "tabela_3_3_10.xlsx")
 
 # Para todas as amostras: 
@@ -352,8 +345,6 @@ tabela_3_3 <- data.frame(
   Variaveis = "temp vs total_user",
   Correlacao_Pearson = cor_temp_user)
 
-library(openxlsx)
-
 write.xlsx(tabela_3_3, file = "tabela_3_3.xlsx")
 
 # QUARTA QUESTÃO:
@@ -367,8 +358,8 @@ plot(data_group$dteday, data_group$total_user, type = "l", col = "grey", lwd = 2
      main = "Série Temporal do Uso do Sistema (02/03/2011 a 26/12/2011)",
      xlab = "Data", ylab = "Total de Usuários")
 
-abline(h = 3116.5, col = "red", lty = 2, lwd = 1)   # Estamos utilizando o valor do primeiro quartil, que já foi calculado anteriormente, para mostrar os períodos de baixa utilização.  
-abline(h = 4681.0, col = "green", lty = 2, lwd = 1)  # Estamos utilizando o valor do terceiro quartil, que já foi calculado anteriormente, para mostrar os períodos de alta utilização.  
+abline(h = 3116.5, col = "red", lty = 2, lwd = 1)   # Estamos utilizando o valor do primeiro quartil, que já foi calculated anteriormente, para mostrar os períodos de baixa utilização.  
+abline(h = 4681.0, col = "green", lty = 2, lwd = 1)  # Estamos utilizando o valor do terceiro quartil, que já foi calculated anteriormente, para mostrar os períodos de alta utilização.  
 
 legend("topleft", 
        legend = c("total_user", "Q3 - Alto Uso", "Q1 - Baixo Uso"), 
@@ -413,7 +404,6 @@ tabela_4_2_temp <- data.frame(
 
 tabela_4_2 <- rbind(tabela_4_2_season, tabela_4_2_temp)
 
-library(openxlsx)
 write.xlsx(tabela_4_2, file = "tabela_4_2.xlsx")
 
 # ITEM C
