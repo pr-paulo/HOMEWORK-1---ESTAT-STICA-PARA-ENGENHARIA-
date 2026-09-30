@@ -11,10 +11,10 @@ No código fonte foram utilizadas, além dos pacotes nativos da linguagem, as bi
 
 ## Divisão Base das Questões e do Relatório:
 
-### Código em R (completo) - Paulo Roberto 
-#### README - Paulo Roberto/Carmen
-### Fundamentação teórica/introdução - Carmen
-#### Desenvolvimento das questões no relatório 
+##### Código em R (completo) - Paulo Roberto 
+##### README - Paulo Roberto/Carmen
+##### Fundamentação teórica/introdução - Carmen
+##### Desenvolvimento das questões no relatório 
 Questão 1 (inteira) - Jefter  
 
 Questão 2   
