@@ -37,8 +37,8 @@ Questão 3
 
 Questão 4  
 * item 1 - Carmen  
-* item 2 -   
-* item 3 -   
+* item 2 - Muniz 
+* item 3 - Jefter
 * item 4 - Carmen  
 
 ---
