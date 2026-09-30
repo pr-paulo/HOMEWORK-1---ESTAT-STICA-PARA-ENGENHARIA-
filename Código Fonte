@@ -183,14 +183,14 @@ dados_primavera_10 <- subset(data_group, season == 1)[1:10, ]
 
 desvio_padrao_primavera_10 <- sd(dados_primavera_10$total_user)
 
-tabela_sd_primavera_10 <- data.frame(
+tabela_3_1_primavera_10 <- data.frame(
   Estacao = "Primavera (1)",
   Amostras = "1 a 10",
   Desvio_Padrao = desvio_padrao_primavera_10
 )
 
 library(openxlsx)
-write.xlsx(tabela_sd_primavera_10, file = "tabela_sd_primavera_10.xlsx")
+write.xlsx(tabela_3_1_primavera_10, file = "tabela_3_1_primavera_10.xlsx")
 
 # Primavera (1):
 
